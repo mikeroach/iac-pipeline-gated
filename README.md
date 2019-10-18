@@ -1,8 +1,8 @@
 # IaC Environment Pipeline - Gated Deployments
 
 _"Vent radioactive gas? Y, E, S. Sound alertness horn? Y, E, S. Decalcify calcium ducts?  
-Well, give me a Y, give me a... Hey! All I have to type is Y!_  
-**--Homer Simpson, S07E07: King-Size Homer**
+Well, give me a Y, give me a... Hey! All I have to type is Y!"_  
+***--Homer Simpson, S07E07: King-Size Homer***
 
 This repository contains Terraform definitions for environments which are ineligible for automated deployments due to enterprise policy or comfort concerns. It requires manual review and approval for changes during the journey towards building confidence in more sophisticated continuous delivery techniques necessary for modern technology organizations to achieve scale, while at the same time preserving the desired system state in Git free of external dependencies.
 
