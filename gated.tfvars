@@ -1,1 +1,1 @@
-service_aphorismophilia_version = "master-84c50c0-90"
+service_aphorismophilia_version = "master-a4bae1c-92"
