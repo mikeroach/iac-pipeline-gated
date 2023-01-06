@@ -35,7 +35,7 @@ pipeline {
         }
         stage('Apply Terraform Plan') {
             when {
-                branch 'master'
+                branch 'main'
             } 
             steps {
                 sh label: 'Apply Terraform plan changes', script: 'make apply'
@@ -43,7 +43,7 @@ pipeline {
         }
         stage('Integration Tests') {
             when {
-                branch 'master'
+                branch 'main'
             }
             steps {
                 sleep(time:30, unit:"SECONDS") // Wait 30 seconds for DDNS daemon set to register new address, if applicable.

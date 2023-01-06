@@ -1,8 +1,8 @@
 #!/bin/sh
 
-# Proof-of-concept poor man's GitOps helper script.
+# Proof-of-concept budget SRE's GitOps helper script.
 # Intended to be invoked by an application's CI job after all deploy tests
-# pass in master branch, and later during multi-stage infrastructure pipelines.
+# pass in main branch, and later during multi-stage infrastructure pipelines.
 
 # Yes, this is awkward and better done with a real delivery system like Jenkins-X,
 # Weaveworks Flux, Argo CD, or Spinnaker (or one pipeline for all environments).
@@ -15,7 +15,7 @@ version="20191005.1"
 usage="
 Usage: $0 -s [service] -v [version] -u [URL] [-d] [-p]
 	-h  display this help message
-	-d  commit directly to master without a pull request branch (set GITHUB_TOKEN environment variable when using default branch mode)
+	-d  commit directly to main without a pull request branch (set GITHUB_TOKEN environment variable when using default branch mode)
 	-p  promote new version/value to gated infrastructure pipeline (Jenkins job will submit pull request)
 	-s  service (or Terraform variable key) to update
 	-u  URL detailing this update (i.e. Jenkins job of originating application pipeline)
@@ -107,15 +107,15 @@ if [ "$promote" == "yes" ] ; then
 	git add scoreboard/${service}-${version}
 	git commit -m "Add lock for update of $service to $version"
 	git push -u origin scoreboard
-	git checkout master
-	git reset --hard origin/master
+	git checkout main
+	git reset --hard origin/main
 fi
 
-# Create a new branch if we're operating in pull request mode, otherwise update master directly.
+# Create a new branch if we're operating in pull request mode, otherwise update main directly.
 if [ "$git_mode" == "branch" ] ; then
 	git checkout -b ${service}-${version}
 else
-	git checkout master
+	git checkout main
 fi
 
 # Update component version with cutting edge DevOps string manipulation techniques.
@@ -128,10 +128,10 @@ else
 	git commit -m "Request update of $service to $version"
 fi
 
-# Push our branch and submit pull request if operating in pull request mode, otherwise update master directly.
+# Push our branch and submit pull request if operating in pull request mode, otherwise update main directly.
 if [ "$git_mode" == "branch" ] ; then
 	git push -u origin ${service}-${version}
 	hub pull-request -m "Request update of $service to $version" -m "Details about this version are available at: $job_url"
 else
-	git push -u origin master
+	git push -u origin main
 fi
