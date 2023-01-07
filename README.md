@@ -12,7 +12,7 @@ This [Terraform HCL](./main.tf) is effectively a wrapper to deploy a specific ve
 
 1. Human or automated pipeline updates Terraform HCL/variables in feature branch and submits pull request.
 1. Jenkins examines pull request, runs Terraform validation tests, then records test status and comments on pull request.
-1. Human inspects Jenkins test status and manually merges pull request into master branch.
-1. Jenkins examines master branch, repeats validation tests, applies Terraform plan in the live environment, and runs integration tests.
+1. Human inspects Jenkins test status and manually merges pull request into `main` branch.
+1. Jenkins examines `main` branch, repeats validation tests, applies Terraform plan in the live environment, and runs integration tests.
 
 Note that while it's possible to manually apply changes directly to this environment, this pipeline should be treated as the second half of the [auto environment infrastructure pipeline](https://github.com/mikeroach/iac-pipeline-auto) with all application version upgrades promoted to ensure adequate testing coverage. The idea is that with comprehensive, robust testing and rich observability metrics at each stage of developing the code powering our infrastructure and application services, we have high confidence that our work is ready to be delivered to customers when our CI/CD pipelines indicate success so we can minimize our reliance on manual steps.

@@ -3,7 +3,7 @@ terraform {
 }
 
 module "environment-gated" {
-  source                            = "github.com/mikeroach/iac-template-pipeline?ref=v17"
+  source                            = "github.com/mikeroach/iac-template-pipeline?ref=v3"
   dns_hostname                      = var.dns_hostname
   dns_domain                        = var.dns_domain
   dockerhub_credentials             = var.dockerhub_credentials
