@@ -16,6 +16,7 @@ module "environment-gated" {
   iac_bootstrap_tfstate_bucket      = var.iac_bootstrap_tfstate_bucket
   iac_bootstrap_tfstate_prefix      = var.iac_bootstrap_tfstate_prefix
   iac_bootstrap_tfstate_credentials = var.iac_bootstrap_tfstate_credentials
+  k8s_preemptible                   = var.k8s_preemptible
   subnet_cidr                       = var.subnet_cidr
   service_aphorismophilia_namespace = var.service_aphorismophilia_namespace
   service_aphorismophilia_version   = var.service_aphorismophilia_version
